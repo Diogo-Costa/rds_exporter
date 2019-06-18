@@ -23,6 +23,7 @@ var (
 	enhancedMetricsPathF = kingpin.Flag("web.enhanced-telemetry-path", "Path under which to expose exporter's enhanced metrics.").Default("/enhanced").String()
 	configFileF          = kingpin.Flag("config.file", "Path to configuration file.").Default("config.yml").String()
 	logTraceF            = kingpin.Flag("log.trace", "Enable verbose tracing of AWS requests (will log credentials).").Default("false").Bool()
+	metricTypes          = kingpin.Flag("metric.type", "Which metrics do you want to monitor. (all|basic|enhanced)").Default("all").String()
 )
 
 func main() {
@@ -43,26 +44,26 @@ func main() {
 	}
 
 	// basic metrics + client metrics + exporter own metrics (ProcessCollector and GoCollector)
-	{
+	if *metricTypes == "all" || *metricTypes == "basic" {
 		prometheus.MustRegister(basic.New(cfg, sess))
 		prometheus.MustRegister(client)
 		http.Handle(*basicMetricsPathF, promhttp.HandlerFor(prometheus.DefaultGatherer, promhttp.HandlerOpts{
 			ErrorLog:      log.NewErrorLogger(),
 			ErrorHandling: promhttp.ContinueOnError,
 		}))
+		log.Infof("Basic metrics   : http://%s%s", *listenAddressF, *basicMetricsPathF)
 	}
 
 	// enhanced metrics
-	{
+	if *metricTypes == "all" || *metricTypes == "enhanced" {
 		registry := prometheus.NewRegistry()
 		registry.MustRegister(enhanced.NewCollector(sess))
 		http.Handle(*enhancedMetricsPathF, promhttp.HandlerFor(registry, promhttp.HandlerOpts{
 			ErrorLog:      log.NewErrorLogger(),
 			ErrorHandling: promhttp.ContinueOnError,
 		}))
+		log.Infof("Enhanced metrics: http://%s%s", *listenAddressF, *enhancedMetricsPathF)
 	}
 
-	log.Infof("Basic metrics   : http://%s%s", *listenAddressF, *basicMetricsPathF)
-	log.Infof("Enhanced metrics: http://%s%s", *listenAddressF, *enhancedMetricsPathF)
 	log.Fatal(http.ListenAndServe(*listenAddressF, nil))
 }
