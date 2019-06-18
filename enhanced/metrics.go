@@ -48,6 +48,9 @@ type cpuUtilization struct {
 	Total  float64 `json:"total"  help:"The total percentage of the CPU in use. This value includes the nice value."`
 	User   float64 `json:"user"   help:"The percentage of CPU in use by user programs."`
 	Wait   float64 `json:"wait"   help:"The percentage of CPU unused while waiting for I/O access."`
+
+	// SQLServer
+	Kern float64 `json:"kern"   help:"The percentage of CPU in use by the kernel."`
 }
 
 //nolint:lll
@@ -114,6 +117,19 @@ type memory struct {
 	Slab           int `json:"slab"           node:"Slab"            m:"1024" help:"The amount of reusable kernel data structures, in kilobytes."`
 	Total          int `json:"total"          node:"MemTotal"        m:"1024" help:"The total amount of memory, in kilobytes."`
 	Writeback      int `json:"writeback"      node:"Writeback"       m:"1024" help:"The amount of dirty pages in RAM that are still being written to the backing storage, in kilobytes."`
+
+	// SQLServer
+	CommitTotKb    int `json:"commitTotKb"    node:"CommitTotKb"     m:"1024" help:"The amount of pagefile-backed virtual address space in use, that is, the current commit charge. This value is composed of main memory (RAM) and disk (pagefiles)."`
+	CommitLimitKb  int `json:"commitLimitKb"  node:"CommitLimitKb"   m:"1024" help:"The maximum possible value for the commitTotKb metric."`
+	CommitPeakKb   int `json:"commitPeakKb"   node:"CommitPeakKb"    m:"1024" help:"The largest value of the commitTotKb metric since the operating system was last started."`
+	KernTotKb      int `json:"kernTotKb"      node:"KernTotKb"       m:"1024" help:"The sum of the memory in the paged and non-paged kernel pools, in kilobytes."`
+	KernPagedKb    int `json:"kernPagedKb"    node:"KernPagedKb"     m:"1024" help:"The amount of memory in the paged kernel pool, in kilobytes."`
+	KernNonpagedKb int `json:"kernNonpagedKb" node:"KernNonpagedKb"  m:"1024" help:"The amount of memory in the non-paged kernel pool, in kilobytes."`
+	PageSize       int `json:"pageSize"       node:"PageSize"        m:"1024" help:"The size of a page, in bytes."`
+	PhysTotKb      int `json:"physTotKb"      node:"PhysTotKb"       m:"1024" help:"The amount of physical memory, in kilobytes."`
+	PhysAvailKb    int `json:"physAvailKb"    node:"PhysAvailKb"     m:"1024" help:"The amount of available physical memory, in kilobytes."`
+	SQLServerTotKb int `json:"sqlServerTotKb" node:"SqlServerTotKb"  m:"1024" help:"The amount of memory committed to Microsoft SQL Server, in kilobytes."`
+	SysCacheKb     int `json:"sysCacheKb"     node:"SysCacheKb"      m:"1024" help:"The amount of system cache memory, in kilobytes."`
 }
 
 type network struct {
