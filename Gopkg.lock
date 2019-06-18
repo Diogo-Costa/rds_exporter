@@ -111,7 +111,7 @@
 [[projects]]
   branch = "master"
   digest = "1:c706e6cf1803e8cbce88ad1159c8750ec0dacbeac7c3906e615af69c0c1d6281"
-  name = "github.com/percona/exporter_shared"
+  name = "github.com/Diogo-Costa/exporter_shared"
   packages = ["helpers"]
   pruneopts = "NUT"
   revision = "16b0da83255720371d18b2304257e073491ed63c"
@@ -238,7 +238,7 @@
     "github.com/aws/aws-sdk-go/service/cloudwatch",
     "github.com/aws/aws-sdk-go/service/cloudwatchlogs",
     "github.com/aws/aws-sdk-go/service/rds",
-    "github.com/percona/exporter_shared/helpers",
+    "github.com/Diogo-Costa/exporter_shared/helpers",
     "github.com/prometheus/client_golang/prometheus",
     "github.com/prometheus/client_golang/prometheus/promhttp",
     "github.com/prometheus/common/log",

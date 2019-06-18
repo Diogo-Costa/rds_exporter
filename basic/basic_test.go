@@ -3,14 +3,14 @@ package basic
 import (
 	"testing"
 
-	"github.com/percona/exporter_shared/helpers"
+	"github.com/Diogo-Costa/exporter_shared/helpers"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/percona/rds_exporter/client"
-	"github.com/percona/rds_exporter/config"
-	"github.com/percona/rds_exporter/sessions"
+	"github.com/Diogo-Costa/rds_exporter/client"
+	"github.com/Diogo-Costa/rds_exporter/config"
+	"github.com/Diogo-Costa/rds_exporter/sessions"
 )
 
 func getExporter(t *testing.T) *Exporter {

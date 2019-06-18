@@ -9,8 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/percona/rds_exporter/client"
-	"github.com/percona/rds_exporter/config"
+	"github.com/Diogo-Costa/rds_exporter/client"
+	"github.com/Diogo-Costa/rds_exporter/config"
 )
 
 func TestSession(t *testing.T) {

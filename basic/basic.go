@@ -7,8 +7,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 
-	"github.com/percona/rds_exporter/config"
-	"github.com/percona/rds_exporter/sessions"
+	"github.com/Diogo-Costa/rds_exporter/config"
+	"github.com/Diogo-Costa/rds_exporter/sessions"
 )
 
 //go:generate go run generate/main.go generate/utils.go

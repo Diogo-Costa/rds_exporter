@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/percona/exporter_shared/helpers"
+	"github.com/Diogo-Costa/exporter_shared/helpers"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
